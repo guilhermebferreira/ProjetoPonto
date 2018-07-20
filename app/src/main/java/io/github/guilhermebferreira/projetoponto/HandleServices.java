@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -70,7 +71,15 @@ public class HandleServices extends AsyncTask<String, Void, Company> {
     @Override
     protected void onPostExecute( Company company){
         Log.i("INFO", "Finalizado");
+        Log.i("TESTE","valor"+R.id.configuracoes_company_name);
+
+        PersistenceManager.getPersistenceManager().save(activity.getApplicationContext(), company);
+
+
+        //TextView text = R.id.configuracoes_company_name;
+
         //já posso atualizar a interface
+
         //activity.updateRecycleView(list);
 
         //encerrando o dialogo de interface que exibe a mensagem "CARREGANDO..."

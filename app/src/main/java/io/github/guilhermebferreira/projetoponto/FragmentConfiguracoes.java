@@ -8,6 +8,9 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 public class FragmentConfiguracoes extends android.support.v4.app.Fragment {
@@ -28,8 +31,22 @@ public class FragmentConfiguracoes extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Company company = PersistenceManager.getPersistenceManager().getStored(getContext());
+
+        View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
+        TextView nome = view.findViewById(R.id.configuracoes_company_name);
+        TextView endereco = view.findViewById(R.id.configuracoes_endereco);
+        TextView latitude = view.findViewById(R.id.configuracoes_latitude);
+        TextView longitude = view.findViewById(R.id.configuracoes_longitude);
+
+        nome.setText(company.getCompanyName());
+        endereco.setText(company.getAddress());
+        latitude.setText(company.getLatitude());
+        longitude.setText(company.getLongitude());
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_configuracoes, container, false);
+        return view;
     }
 
     @Override
